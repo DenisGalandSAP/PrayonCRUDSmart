@@ -1,0 +1,61 @@
+<mvc:View controllerName="project10.controller.Table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:smartForm="sap.ui.comp.smartform"
+    xmlns:smartField="sap.ui.comp.smartfield"
+    xmlns:layout="sap.ui.layout"
+    displayBlock="true"
+    xmlns="sap.m">
+    <Page id="pageTable"
+        title="Table"
+        showNavButton="true"
+        navButtonPress="onBack">
+        <content>
+            <layout:Grid id="grid0"
+                defaultSpan="L12 M12 S12"
+                width="{=${device>/system/desktop} ? '50%' : '100%' }"
+                position="Center">
+                <smartForm:SmartForm id="smartform0"
+                    editable="true"
+                    editTogglable="true"
+                    checked=".onChecked">
+                    <smartForm:layout>
+                        <smartForm:Layout labelSpanM="4"
+                            labelSpanL="4"
+                            labelSpanS="4"
+                            columnsM="1"
+                            columnsL="1" />
+                    </smartForm:layout>
+                    <smartForm:Group>
+                        <smartForm:GroupElement visible="{=${app>/Table/editMode} === 'edit' ? true : false}">
+                            <smartField:SmartField value="{Tableid}"/>
+                        </smartForm:GroupElement>
+                        <smartForm:GroupElement>
+                            <smartField:SmartField value="{Tablename}"
+                                change=".onChange" />
+                        </smartForm:GroupElement>
+                        <smartForm:GroupElement>
+                            <smartField:SmartField value="{Tableyear}"
+                                change=".onChange"/>
+                        </smartForm:GroupElement>
+                        <smartForm:GroupElement>
+                            <smartField:SmartField value="{VendorName}"
+                                change=".onChange(${$source>},true)"/>
+                        </smartForm:GroupElement>
+                        <smartForm:GroupElement>
+                            <smartField:SmartField value="{Produced}"
+                                change=".onChange"/>
+                        </smartForm:GroupElement>
+                    </smartForm:Group>
+                </smartForm:SmartForm>
+            </layout:Grid>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button text="Save"
+                    enabled="{app>/Table/saveEnabled}"
+                    press=".onSave"/>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

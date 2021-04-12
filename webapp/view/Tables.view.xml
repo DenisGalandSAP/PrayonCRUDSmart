@@ -1,0 +1,42 @@
+<mvc:View controllerName="project10.controller.Tables"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    displayBlock="true"
+    xmlns="sap.m">
+    <Page id="pageTables"
+        title="{i18n>title}">
+        <content>
+            <smartTable:SmartTable id="smartTable0"
+                entitySet="ZCDSPINBALL"
+                enableAutoBinding="true"
+                tableType="ResponsiveTable"
+                initiallyVisibleFields="Tablename,VendorName,Tableyear,Produced"
+                requestAtLeastFields="Vendorid"
+                useExportToExcel="true"
+                showVariantManagement="true"
+                persistencyKey="Tableid"
+                demandPopin="true"
+                useVariantManagement="true">
+                <smartTable:customToolbar>
+                    <OverflowToolbar>
+                        <ToolbarSpacer/>
+                        <Button icon="sap-icon://add"
+                            press=".onAction('add')"/>
+                        <Button icon="sap-icon://delete"
+                            press=".onDelete"
+                            enabled="{app>/Tables/editEnabled}"/>
+                        <Button icon="sap-icon://edit"
+                            press=".onAction('edit')"
+                            enabled="{app>/Tables/editEnabled}"/>
+                    </OverflowToolbar>
+                </smartTable:customToolbar>
+                <Table id="table0"
+                    mode="SingleSelectMaster"
+                    growing="true"
+                    growingScrollToLoad="true"
+                    growingThreshold="20"
+                    selectionChange=".onSelectionChange"/>
+            </smartTable:SmartTable>
+        </content>
+    </Page>
+</mvc:View>
